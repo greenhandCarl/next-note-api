@@ -1,25 +1,15 @@
 import express from 'express'
-import { ApolloServer, gql } from 'apollo-server-express'
+import dotenv from 'dotenv'
+import createApolloServer from '@/graphql/server'
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
+dotenv.config({ path: envFile });
 
-const resolvers = {
-  Query: {
-    hello: () => "Hello, World"
-  }
-}
-
-const server = new ApolloServer({ typeDefs, resolvers })
 
 const app = express()
 
 async function startServer () {
-  await server.start()
-  server.applyMiddleware({ app })
+  const server = await createApolloServer(app);
 
   app.listen({ port: 4000 }, () => {
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
