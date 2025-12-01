@@ -1,0 +1,1 @@
+export const getEvnMode = () => process.env.NODE_ENV === 'production'
