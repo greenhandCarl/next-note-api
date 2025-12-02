@@ -1,32 +1,24 @@
-const folderTypeDefs = `#graphql
-  type Folder {
-    _id: ID!
-  }
+import { gql } from 'apollo-server-express'
 
-  input CreateFolderInput {
+const folderTypeDefs = gql`
+  type Folder {
+    id: ID!
+    userId: ID!
     name: String!
     parentId: ID
-    createdBy: ID!
-  }
-
-  input UpdateFolderInput {
-    name: String
-    parentId: ID
-  }
-
-  type FolderDeleteResponse {
-    message: String!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Query {
-    getFolderById(folderId: ID!): Folder
-    getFolders(createdBy: ID!, parentId: ID): [Folder]
+    foldersByUser(userId: ID!): [Folder!]!
+    folder(id: ID!): Folder
   }
 
   type Mutation {
-    createFolder(input: CreateFolderInput!): Folder
-    updateFolder(folderId: ID!, input: UpdateFolderInput!): Folder
-    deleteFolder(folderId: ID!): FolderDeleteResponse
+    createFolder(userId: ID!, name: String!, parentId: ID): Folder!
+    updateFolder(id: ID!, name: String, parentId: ID): Folder!
+    deleteFolder(id: ID!): Boolean!
   }
 `;
 
