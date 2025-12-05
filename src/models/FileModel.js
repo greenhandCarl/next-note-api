@@ -1,4 +1,4 @@
-import { mongoose } from '@/helpers'
+import mongoose from 'mongoose'
 
 const fileSchema = new mongoose.Schema({
   userId: mongoose.Schema.Types.ObjectId,

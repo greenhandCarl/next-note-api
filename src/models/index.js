@@ -1,2 +1,2 @@
-export * from './File'
-export * from './Folder'
+export * from './FileModel'
+export * from './FolderModel'
