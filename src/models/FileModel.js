@@ -9,4 +9,4 @@ const fileSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 })
 
-export const File = mongoose.model('File', fileSchema)
+export const FileModel = mongoose.model('File', fileSchema)

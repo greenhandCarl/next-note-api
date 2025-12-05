@@ -8,5 +8,5 @@ const folderSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 })
 
-export const Folder = mongoose.model('Folder', folderSchema)
+export const FolderModel = mongoose.model('Folder', folderSchema)
 
